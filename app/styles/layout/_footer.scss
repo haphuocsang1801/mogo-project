@@ -1,0 +1,169 @@
+.footer {
+    background-color: $gray-color;
+    &-top {
+        padding: 7.5rem 0 7rem;
+        @include flexBox(stretch, space-between);
+    }
+    &-column {
+        width: calc(25% - 2.5rem);
+        &:first-child {
+            width: calc(40% - 2.5rem);
+        }
+        &:nth-child(2) {
+            width: calc(35% - 2.5rem);
+        }
+    }
+    &-heading {
+        font-weight: 500;
+        text-transform: uppercase;
+        height: 4rem;
+        margin-bottom: 1rem;
+        display: inline-block;
+        margin-bottom: 2rem;
+        &--logo {
+            text-transform: none;
+            font-size: 4.5rem;
+            font-weight: bold;
+            color: $gray-dark-color;
+        }
+    }
+    &-desc {
+        @include text;
+        font-style: normal;
+        color: $text-color;
+        margin-top: 2rem;
+        margin-bottom: 4.5rem;
+        font-weight: 400;
+    }
+    &-follower {
+        font-size: 1.8rem;
+        padding-bottom: 2rem;
+        margin-bottom: 2rem;
+        border-bottom: 1px solid $border-color;
+        strong {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+    }
+    &-social {
+        @include flexBox(center);
+        margin-bottom: 3.5rem;
+        span {
+            @include text;
+            color: $text-color;
+        }
+        &-icon {
+            color: $third-color;
+            margin-left: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+    }
+    &-form {
+        width: 100%;
+        max-width: 38rem;
+        @include flexBox;
+    }
+    &-form-email {
+        flex-grow: 1;
+        padding: 1.5rem;
+        border: 1px solid $border-color;
+        border-right: none;
+        font-family: $secondary-font;
+        font-style: italic;
+        background-color: white;
+        font-size: 1.5rem;
+        font-weight: 300;
+        border-radius: 0;
+    }
+    &-form-button {
+        text-transform: uppercase;
+        padding: 1.5rem 4.5rem;
+        background-color: $third-color;
+        font-weight: bold;
+        color: white;
+        border: none;
+        flex-shrink: 0;
+        border-radius: 0;
+        font-size: 1.4rem;
+    }
+    &-blog {
+        @include flexBox(center);
+        margin-bottom: 3rem;
+        &-img {
+            @include size(12rem, 8rem);
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+        &-info {
+            padding-left: 2rem;
+            @include flexBox(flex-start, center, column);
+        }
+        &-title {
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 1.2rem;
+            line-height: 1.4;
+            color: $title-color;
+            @include textClamp(2);
+        }
+        &-date {
+            @include text(300);
+            color: $text-color;
+        }
+    }
+    &-images {
+        @include flexBox(stretch, flex-start, row, flex, wrap);
+        margin-left: -2px;
+        margin-bottom: 2rem;
+    }
+    &-image {
+        width: calc(33.33% - 2px);
+        margin-left: 2px;
+        margin-bottom: 2px;
+        padding-bottom: 33.33%;
+        height: 0;
+        position: relative;
+        img {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            @include size(100%);
+            object-fit: cover;
+        }
+        &-more {
+            @include text(300);
+            color: $title-color;
+        }
+    }
+    &-bottom {
+        padding: 2.5rem 0;
+        text-align: center;
+        border-top: 1px soild $border-color;
+        span {
+            color: $primary-color;
+        }
+    }
+    @include maxWidth(1023px) {
+        &-top {
+            display: block;
+            padding-bottom: 3rem;
+        }
+        &-column:not(:nth-child(999)) {
+            width: 100%;
+            margin-bottom: 3rem;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+    @include maxWidth(479px) {
+        &-form-button {
+            padding: 1.5rem;
+        }
+        &-form-email {
+            width: 50%;
+        }
+    }
+}

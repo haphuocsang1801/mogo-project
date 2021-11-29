@@ -1,0 +1,21 @@
+header.header 
+	.container
+		.header-top
+			a.header-logo(href="index.html") MoGo
+			i.fas.fa-bars.header-bar
+			ul.header-menu
+				each val in ['About','Service','Blog','Work','Contact']
+					+menuLink(val)
+				li.header-menu-item
+					a.header-menu-icon(href="#") 
+						i.fas.fa-shopping-cart
+				li.header-menu-item
+					a.header-menu-icon(href="#")
+						i.fas.fa-search
+		.header-content
+			h2.header-content-title Creative template
+			h1.header-content-main Welcome to mogo 
+			a.header-content-more(href="#") Learn more
+		.header-bottom  
+			each val, key in {1: 'Intro',2: 'Work',3: 'About',4: 'Contact'}
+				+menuSlides(key, val)

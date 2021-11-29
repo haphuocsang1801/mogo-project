@@ -1,0 +1,1 @@
+"use strict";var menuBars=document.querySelector(".header-bar"),menuHeader=document.querySelector(".header-menu"),expandClass="is-expand";menuBars.addEventListener("click",function(){menuHeader.classList.add(expandClass)}),window.addEventListener("click",function(e){menuHeader.contains(e.target)||e.target.matches(".header-bar")||menuHeader.classList.remove(expandClass)});

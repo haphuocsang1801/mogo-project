@@ -1,0 +1,167 @@
+@mixin size($width: 10rem, $height: $width) {
+    width: $width;
+    height: $height;
+}
+@mixin absoluteCenter($direction: "left") {
+    position: absolute;
+    @if $direction == "left" {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    @if $direction == "top" {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    @if $direction == "both" {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+@mixin absoluteFull() {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+@mixin flexBox(
+    $align-item: stretch,
+    $justify-content: flex-start,
+    $direction: row,
+    $flex: flex,
+    $wrap: nowrap
+) {
+    display: $flex;
+    align-items: $align-item;
+    justify-content: $justify-content;
+    flex-direction: $direction;
+    flex-wrap: $wrap;
+}
+@mixin maxWidth($breakpoint) {
+    @media screen and (max-width: $breakpoint) {
+        @content;
+    }
+}
+@mixin minWidth($breakpoint) {
+    @media screen and (min-width: $breakpoint) {
+        @content;
+    }
+}
+@mixin hiddenCroll() {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+@mixin textClamp($rows: 1, $size: 100%) {
+    display: -webkit-box;
+    -webkit-line-clamp: $rows;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: $size;
+    max-width: $size;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+@mixin hoverEffect($classItem, $classContent, $tranform: "true") {
+    #{$classItem} {
+        position: relative;
+        z-index: 1;
+        & > * {
+            transition: transform 0.25s linear;
+            will-change: $tranform;
+        }
+        @if $tranform == "true" {
+            &::before {
+                content: "";
+                @include absoluteFull();
+                background-color: $third-color;
+                @include size(100%, 100%);
+                z-index: -1;
+                will-change: $tranform;
+                transition: transform 0.25s linear;
+            }
+        }
+        &:hover {
+            #{$classContent} {
+                visibility: visible;
+                opacity: 1;
+                text-align: center;
+            }
+            @if $tranform== "true" {
+                & > * {
+                    transform: translate(-1rem, -1rem);
+                }
+                // transform: translate(-1rem, -1rem);
+                // &::before {
+                //     transform: translate(1rem, 1rem);
+                // }
+            }
+        }
+        #{$classContent} {
+            @include absoluteFull();
+            @include size(100%, 100%);
+            @include flexBox(center, center, column);
+            background: linear-gradient(
+                to bottom,
+                rgba($primary-color, 0.8),
+                rgba($secondary-color, 0.8)
+            );
+            visibility: hidden;
+            opacity: 0;
+            z-index: 2;
+            transition: all 0.25s linear;
+        }
+    }
+}
+@mixin touchSlider($width: 80%, $gap: 1.5rem, $padding: 1rem) {
+    display: grid !important;
+    grid-auto-columns: $width;
+    grid-auto-flow: column;
+    grid-template-columns: unset;
+    grid-column-gap: $gap;
+    padding: $padding;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-snap-stop: always;
+    @include hiddenCroll();
+    & > * {
+        scroll-snap-align: start;
+        width: auto;
+        padding-left: 1rem;
+    }
+}
+@mixin text($font-weight: 300) {
+    font-family: $secondary-font;
+    font-size: 1.5rem;
+    font-weight: $font-weight;
+    font-style: italic;
+    line-height: 1.4;
+}
+@mixin color($conf: ()) {
+    $conf: extend(
+        (
+            color: $text-color,
+        ),
+        $conf
+    );
+    color: map-get($map: $conf, $key: color);
+}
+@mixin flexBox2($conf: ()) {
+    $conf: extend(
+        (
+            display: flex,
+            align-items: stretch,
+            justify-content: flex-start,
+            flex-direction: row,
+            flex-wrap: no-wrap,
+        ),
+        $conf
+    );
+    display: map-get($map: $conf, $key: display);
+    align-items: map-get($map: $conf, $key: align-items);
+    justify-content: map-get($map: $conf, $key: justify-content);
+    flex-direction: map-get($map: $conf, $key: flex-direction);
+    flex-wrap: map-get($map: $conf, $key: flex-wrap);
+}

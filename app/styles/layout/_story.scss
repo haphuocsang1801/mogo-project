@@ -1,0 +1,124 @@
+.story {
+    padding: 11rem 0;
+    background-color: white;
+    &-list {
+        @include flexBox(stretch, space-between);
+    }
+    &-item {
+        width: calc(33.33% - 2rem);
+    }
+    &-image {
+        @include size(100%, 24rem);
+        object-fit: cover;
+    }
+    &-media {
+        position: relative;
+    }
+    &-date {
+        position: absolute;
+        bottom: 1rem;
+        left: -1rem;
+        padding: 1.5rem 2rem;
+        background-color: $third-color;
+        @include flexBox(center, center, column);
+        color: white;
+        &-number {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+        &-text {
+            @include text;
+        }
+    }
+    &-media {
+        margin-bottom: 2rem;
+    }
+    &-title {
+        margin-bottom: 1.7rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        line-height: 1.4;
+    }
+    &-desc {
+        @include text(400);
+        color: $text-color;
+        font-style: normal;
+        padding-bottom: 2rem;
+        margin-bottom: 2rem;
+        line-height: 1.2;
+        border-bottom: 1px solid $border-color;
+    }
+    &-meta {
+        @include flexBox(center);
+        &-number {
+            @include text();
+            color: $text-color;
+        }
+    }
+    &-meta-icon {
+        color: $third-color;
+        padding: 0.8rem;
+        padding-left: 0;
+    }
+    &-meta-item:not(:first-child) {
+        margin-left: 1rem;
+    }
+    @include maxWidth(1023px) {
+        padding: 5rem 0;
+        &-image {
+            height: 14rem;
+        }
+        &-date {
+            padding: 1rem 1.5rem;
+        }
+        &-title {
+            font-size: 1.2rem;
+        }
+        &-desc-text {
+            font-size: 1.3rem;
+            line-height: 1.4;
+            @include textClamp(2);
+        }
+    }
+    @include maxWidth(767px) {
+        padding: 0;
+        &-list {
+            display: block;
+        }
+        &-image {
+            height: auto;
+        }
+        &-item {
+            width: 100%;
+            &:not(:last-child) {
+                margin-bottom: 3rem;
+            }
+        }
+    }
+}
+.map {
+    padding: 6rem 0;
+    background: linear-gradient(rgba(white, 0.8)),
+        url(../images/img-map.png) no-repeat center/cover;
+    &-container {
+        @include flexBox(center, center, column);
+    }
+    &-icon {
+        margin-bottom: 2rem;
+    }
+    &-heading {
+        position: relative;
+        padding-bottom: 2rem;
+        font-size: 2.4rem;
+        font-weight: bold;
+        color: $primary-color;
+        text-transform: uppercase;
+        &:after {
+            content: "";
+            @include size(6rem, 0.4rem);
+            @include absoluteCenter();
+            bottom: 0;
+            background-color: $primary-color;
+        }
+    }
+}

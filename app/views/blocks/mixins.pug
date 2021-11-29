@@ -1,0 +1,103 @@
+mixin menuLink(title,href="#")
+	li.header-menu-item
+		a.header-menu-link(href=href)=title
+mixin menuSlides(number, title)
+	.header-bottom-item
+		span.header-bottom-number=number
+		span.header-bottom-text=title
+mixin blockBox(caption,title,desc)
+	.block-box
+		h3.block-box-caption= caption
+		h2.block-box-title= title 
+		if desc 
+			p.block-box-desc= desc
+mixin aboutItem(data)
+	.about-list-item 
+		img.about-image(src= data.src)
+		.about-content  
+			i.about-icon(class=data.iconClass)
+			span.about-title=data.title
+mixin numberItem(count,content)
+	.number-item 
+		h2.number-item-count=count 
+		span.number-item-content=content
+mixin serviceItem(src,title,desc)
+	.service-item 
+		img.service-item-icon(src=src)
+		.service-item-info
+			h3.service-item-title= title
+			p.service-item-des=desc
+
+mixin wedoItem(src, title, content,active = "")
+	.wedo-item(class= active)
+		.wedo-item-header
+			img(src=src).wedo-item-icon
+			h3.wedo-item-title=title
+			i.fal.fa-angle-down.wedo-item-arrow
+		.wedo-item-text
+			.wedo-item-content= content
+mixin teamSocial(facebook="#",twitter="#",instagram="#",youtube="#")
+	ul.team-social 
+		li.team-social-item 
+			a.team-social-link(href=facebook)
+				i.fab.fa-facebook-f
+		li.team-social-item 
+			a.team-social-link(href=twitter)
+				i.fab.fa-twitter
+		li.team-social-item 
+			a.team-social-link(href=instagram)
+				i.fab.fa-instagram
+		li.team-social-item 
+			a.team-social-link(href=youtube)
+				i.fab.fa-youtube
+mixin teamItem(src,name,position)
+	.team-item 
+		.team-main 
+			img(src=src).team-image
+			.team-info
+				if block 
+					block
+		.team-content 
+			.team-name= name
+			.team-position=position
+mixin workItem(src,icon,title,desc,full="")
+	.work-item(class=full)
+		img(src=src).work-image
+		.work-content
+			img(src=icon).work-icon
+			h3.work-title= title 
+			span.work-desc=desc
+mixin peopleItem(src,name,position,desc)
+	li.people-item 
+		img.people-avatar(src=src)
+		.people-info 
+			h3.people-name=name 
+			span.people-position=position
+			p.people-desc=desc
+mixin storyItem(src,date,month,title,desc,meta_number,comment_number)
+	li.story-item 
+		.story-media 
+			img.story-image(src=src)
+			.story-date 
+				span.story-date-number=date
+				span.story-date-text=month
+		h3.story-title=title
+		.story-desc
+			p.story-desc-text=desc 
+		.story-meta 
+			.story-meta-item 
+				i.fa.fa-eye.story-meta-icon 
+				span.story-meta-number=meta_number
+			.story-meta-item 
+				i.fa.fa-comment.story-meta-icon 
+				span.story-meta-number=comment_number
+mixin quoteItem(src="../images/img-quote.png",type=false,dec="Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, harum quam? Voluptatum consequuntur, aliquam vitae rerum cupiditate dignissimos unde aspernatur perspiciatis similique ea doloremque neque nobis, architecto atque itaque doloribus.", author="Jon doe")
+	.quote-item
+		if type == false  
+			.quote-icon 
+				img(src=src)
+		else 
+			img(src=src).quote-image
+		.quote-info 
+			p.quote-text=dec
+			span.quote-author=author
